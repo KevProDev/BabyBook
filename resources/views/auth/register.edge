@@ -1,0 +1,96 @@
+@layout('layouts/empty')
+
+
+@section('title')
+Toku - Register
+@endsection
+
+
+@section('current-class')
+    auth-page
+@endsection
+
+@section('custom-style-app-container')
+
+@endsection
+
+@section('content')
+  <div class="auth-form">
+    <form action="/register" method="POST" class="default-form">
+      {{ csrfField() }}
+      <h1>BabyBook</h1>
+      <div class="error-box 
+        @if(hasErrorFor('email') || hasErrorFor('password'))
+          active
+        @endif
+        ">
+        @if(hasErrorFor('email'))
+          {{ getErrorFor('email')}}
+        @endif
+        @if(hasErrorFor('password'))
+        {{ getErrorFor('password')}}
+        @endif
+        @if(hasErrorFor('database'))
+        {{ getErrorFor('database')}}
+        @endif
+      </div>
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" name="name" value="" class="text">
+          
+      </div>
+      <div class="form-group">
+        <label for="relationship">Relationship To Baby:</label>
+        <input type="text" name="relationship" value="" class="text">
+          
+      </div>
+      <div class="form-group">
+        <label for="baby_name">Baby Name:</label>
+        <input type="text" name="baby_name" value="" class="text">
+          
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" name="email" value=" {{ old('email', '')}} " class="text
+          @if(hasErrorFor('email'))
+    
+            error
+          @endif
+        ">
+          
+      </div>
+      <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" name="password" value="" class="text
+            @if(hasErrorFor('password'))
+      
+            error
+            @endif
+          ">
+      </div>
+      <div class="form-group">      
+          <label for="confirm_password">Confirm Password:</label>
+          <input type="password" name="confirm_password" value="" class="text
+            @if(hasErrorFor('confirm_password'))
+    
+              error
+            @endif
+          ">
+      </div>
+      <div class="form-group">      
+        <button type="submit">Register</button>
+      </div>
+      <hr>
+      <a href="/login">I Remember my info. let me login</a>
+    </form>
+  </div>
+  <div class="side-image">
+
+  </div>
+@endsection
+<body>
+
+
+
+
+

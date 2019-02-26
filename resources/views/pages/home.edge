@@ -1,0 +1,215 @@
+@layout('layouts/app')
+
+@section('title')
+Toku - social network
+@endsection
+
+@section('current-class')
+home-page
+@endsection
+
+@section('notification')
+  <div class="notification welcome 
+    @if(flashMessage('notification'))
+      active
+    @endif
+  ">
+    @if(flashMessage('notification'))
+      {{flashMessage('notification')}}
+    @endif
+    
+  </div>
+@endsection
+
+@section('content-area')
+
+<section class="compose-section">
+
+
+
+    <textarea name="" id="" cols="80" rows="8"></textarea>
+    <div class="user-img"></div>
+    <div class="buttons">
+      <div class="button photo-btn"><i class="fas fa-camera-retro"></i></div>
+      <div class="button video-btn"><i class="fas fa-video"></i></div>
+      <div class="button send-btn"><i class="fas fa-paper-plane"></i></div>
+    </div>
+  </section>
+  <section id="updates">
+      <!-- Single update -->
+      <div class="update-container">
+        <div class="author-info">
+            <a href="#" class="user-img"></a>
+          <div class="info"> <a href="#">Kevin Johnson</a> shared a <a href="#">story</a></div>
+        </div>
+        <div class="media">
+          <div class="image" style="background: url('https://quotesblog.net/wp-content/uploads/2015/10/inspirational-quotes-1.jpg');background-repeat: no-repeat;
+          background-position: center center;
+          background-size: cover;"></div>
+        </div>
+        <div class="padding-container">
+          
+          <div class="grey-container">
+            
+            <div class="update-info">
+              <h3>How to become a developer?</h3>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem id sed nam quod sint quam, beatae quas fugiat deserunt ea voluptate, eum cumque sapiente sequi minus ab necessitatibus harum cupiditate veritatis itaque commodi repellendus iste!</p>
+            </div>
+            <div class="update-stats">
+              <div class="icon-section">
+                <div class="like-circle">
+                    <i class="fas fa-thumbs-up"></i>
+                </div>
+              </div>
+              <div class="other-users">Chine Russell and 23 others liked update</div>
+              <div class="comments-stats">4 comments</div>
+            </div>
+            <div class="compose-comments">
+              <textarea name="name" id="" cols="80" rows="8"></textarea>
+              <div class="buttons">
+                <div class="repost-button">
+                    <i class="fas fa-redo"></i>
+                </div>
+                <div class="like-button">
+                    <i class="fas fa-thumbs-up"></i>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+      <div class="update-container">
+          <div class="author-info">
+              <a href="#" class="user-img"></a>
+            <div class="info"> <a href="#">Kevin Johnson</a> shared a <a href="#">story</a></div>
+          </div>
+          <div class="media">
+            <div class="image" style="background: url('https://quotesblog.net/wp-content/uploads/2015/10/inspirational-quotes-1.jpg');background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;"></div>
+          </div>
+          <div class="padding-container">
+            
+            <div class="grey-container">
+              
+              <div class="update-info">
+                <h3>How to become a developer?</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem id sed nam quod sint quam, beatae quas fugiat deserunt ea voluptate, eum cumque sapiente sequi minus ab necessitatibus harum cupiditate veritatis itaque commodi repellendus iste!</p>
+              </div>
+              <div class="update-stats">
+                <div class="icon-section">
+                  <div class="like-circle">
+                      <i class="fas fa-thumbs-up"></i>
+                  </div>
+                </div>
+                <div class="other-users">Chine Russell and 23 others liked update</div>
+                <div class="comments-stats">4 comments</div>
+              </div>
+              <div class="compose-comments">
+                <textarea name="name" id="" cols="80" rows="8"></textarea>
+                <div class="buttons">
+                  <div class="repost-button">
+                      <i class="fas fa-redo"></i>
+                  </div>
+                  <div class="like-button">
+                      <i class="fas fa-thumbs-up"></i>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+      </div>
+
+      <div class="update-container">
+          <div class="author-info">
+              <a href="#" class="user-img"></a>
+            <div class="info"> <a href="#">Kevin Johnson</a> shared a <a href="#">story</a></div>
+          </div>
+          <div class="media">
+            <div class="image" style="background: url('https://quotesblog.net/wp-content/uploads/2015/10/inspirational-quotes-1.jpg');background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;"></div>
+          </div>
+          <div class="padding-container">
+            
+            <div class="grey-container">
+              
+              <div class="update-info">
+                <h3>How to become a developer?</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem id sed nam quod sint quam, beatae quas fugiat deserunt ea voluptate, eum cumque sapiente sequi minus ab necessitatibus harum cupiditate veritatis itaque commodi repellendus iste!</p>
+              </div>
+              <div class="update-stats">
+                <div class="icon-section">
+                  <div class="like-circle">
+                      <i class="fas fa-thumbs-up"></i>
+                  </div>
+                </div>
+                <div class="other-users">Chine Russell and 23 others liked update</div>
+                <div class="comments-stats">4 comments</div>
+              </div>
+              <div class="compose-comments">
+                <textarea name="name" id="" cols="80" rows="8"></textarea>
+                <div class="buttons">
+                  <div class="repost-button">
+                      <i class="fas fa-redo"></i>
+                  </div>
+                  <div class="like-button">
+                      <i class="fas fa-thumbs-up"></i>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+      </div>
+
+      <div class="update-container">
+          <div class="author-info">
+              <a href="#" class="user-img"></a>
+            <div class="info"> <a href="#">Kevin Johnson</a> shared a <a href="#">story</a></div>
+          </div>
+          <div class="media">
+            <div class="image" style="background: url('https://quotesblog.net/wp-content/uploads/2015/10/inspirational-quotes-1.jpg');background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;"></div>
+          </div>
+          <div class="padding-container">
+            
+            <div class="grey-container">
+              
+              <div class="update-info">
+                <h3>How to become a developer?</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem id sed nam quod sint quam, beatae quas fugiat deserunt ea voluptate, eum cumque sapiente sequi minus ab necessitatibus harum cupiditate veritatis itaque commodi repellendus iste!</p>
+              </div>
+              <div class="update-stats">
+                <div class="icon-section">
+                  <div class="like-circle">
+                      <i class="fas fa-thumbs-up"></i>
+                  </div>
+                </div>
+                <div class="other-users">Chine Russell and 23 others liked update</div>
+                <div class="comments-stats">4 comments</div>
+              </div>
+              <div class="compose-comments">
+                <textarea name="name" id="" cols="80" rows="8"></textarea>
+                <div class="buttons">
+                  <div class="repost-button">
+                      <i class="fas fa-redo"></i>
+                  </div>
+                  <div class="like-button">
+                      <i class="fas fa-thumbs-up"></i>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+      </div>
+      
+    </section>
+
+
+@endsection

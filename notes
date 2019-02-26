@@ -1,0 +1,6 @@
+start php server
+  yarn run watch-server
+
+watch files and update 
+  yarn run watch
+
