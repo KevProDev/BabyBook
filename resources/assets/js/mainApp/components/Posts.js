@@ -37,7 +37,7 @@ export default class Posts extends Component {
                 </p>
               </div>
             </div>
-            <div className={`${(post.type == 'text') ? 'story' : 'image'}`} style={{background: `url('${postImg}')`, backgroundRepeat: "no-repeat", backgroundPosition: "center center", backgroundSize: "cover" }} />
+            <div className={`${(post.type === 'text') ? 'story' : 'image'}`} style={{background: `url('${postImg}')`, backgroundRepeat: "no-repeat", backgroundPosition: "center center", backgroundSize: "cover" }} />
           </div>
           <div className="padding-container">
             <div className="grey-container">
