@@ -844,9 +844,10 @@ var Profile = function (_Component) {
                 relationship: _this.state.relationship
                 // relationship: this.state.relationship_title
 
-              }).then(function (res) {
-                console.log(res);
               });
+              // .then(function (res) {
+              //   console.log(res);
+              // })
 
             case 3:
             case 'end':
@@ -860,9 +861,10 @@ var Profile = function (_Component) {
       var name = event.target.name;
       var value = event.target.type == 'checkbox' ? event.target.checked : event.target.value;
 
-      _this.setState((0, _defineProperty3.default)({}, name, value), function () {
-        console.log("Handlechange", _this.state);
-      });
+      _this.setState((0, _defineProperty3.default)({}, name, value));
+      //  () => {
+      //   console.log("Handlechange", this.state)
+      // })
     };
 
     _this.state = {};
@@ -1413,11 +1415,11 @@ var ComposeSection = function (_Component) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              console.log(_this.state, "THIS STATE ------");
+              // console.log(this.state, "THIS STATE ------")
               self = _this;
 
               if (_this.state.post_img) {
-                _context.next = 6;
+                _context.next = 5;
                 break;
               }
 
@@ -1430,10 +1432,10 @@ var ComposeSection = function (_Component) {
               }).then(function () {
                 self.forceUpdate();
               });
-              _context.next = 14;
+              _context.next = 13;
               break;
 
-            case 6:
+            case 5:
               // Where the POST Request will be sent to for AXIOS
               url = 'https://api.cloudinary.com/v1_1/kevpro/image/upload';
 
@@ -1450,7 +1452,7 @@ var ComposeSection = function (_Component) {
 
                 // Send files cloundinary
               };
-              _context.next = 13;
+              _context.next = 12;
               return _axios2.default.post(url, fd, config)
               // Once the url comes back start another AXIOS Post request to PostController to save the data and the url to the database 
               .then(function (res) {
@@ -1468,14 +1470,14 @@ var ComposeSection = function (_Component) {
                 this.forceUpdate();
               });
 
-            case 13:
+            case 12:
               post = _context.sent;
 
-            case 14:
+            case 13:
 
               _this.forceUpdate();
 
-            case 15:
+            case 14:
             case "end":
               return _context.stop();
           }

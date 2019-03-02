@@ -46,7 +46,7 @@ class AuthController {
           return response.redirect("back");
         }
         // notify user once they login in
-        session.flash({ notification: "Welcome to Toku" });
+        session.flash({ notification: "Welcome to BabyBook" });
         return response.redirect("/");
       }
     } else {
@@ -86,7 +86,7 @@ class AuthController {
         // login the user
         await auth.login(user);
         // notify user once they login in
-        session.flash({ notification: "Welcome to Toku" });
+        session.flash({ notification: "Welcome to Babybook" });
         return response.redirect("/");
       } else {
         // password incorrect
