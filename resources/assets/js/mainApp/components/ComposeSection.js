@@ -49,7 +49,7 @@ export default class ComposeSection extends Component {
           post_title: self.state.post_title,
           content: self.state.post_content,
           user_id: self.props.initialData.userInfo.id,
-          type: `image`,
+          type:'image',
           image_url:url
           })
         })
