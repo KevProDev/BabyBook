@@ -100,7 +100,7 @@ export default class ComposeSection extends Component {
                  <div className="user-img" style={{background: `url('${user_img}')`, backgroundRepeat:"no-repeat", backgroundPosition: "center center", backgroundSize: "cover"}} />
                  <div className="buttons">
                    <div className="button photo-btn">
-                     <i className="fas fa-camera-retro" name="post_img" onClick={() => this.fileInput.click() } />
+                     <i className="fas fa-camera-retro" name="post_img" onClick={() => this.fileInput.click() } onChange={this.handleFile} />
                    </div>
                    {/* <div className="button video-btn">
                      <i className="fas fa-video" />
