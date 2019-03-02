@@ -22,9 +22,6 @@ export default class ComposeSection extends Component {
         type: 'text',
       
         })
-        .then(function (){
-          self.forceUpdate();
-        })
     } else {
         // Where the POST Request will be sent to for AXIOS
       let url = 'https://api.cloudinary.com/v1_1/kevpro/image/upload';
@@ -52,7 +49,7 @@ export default class ComposeSection extends Component {
           post_title: self.state.post_title,
           content: self.state.post_content,
           user_id: self.props.initialData.userInfo.id,
-          type: 'image',
+          type: "image",
           image_url:url
           })
         })
