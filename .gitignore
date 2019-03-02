@@ -3,6 +3,7 @@
 
 node_modules
 node_modules/
+deploy commands
 
 ### CodeKit ###
 # General CodeKit files to ignore

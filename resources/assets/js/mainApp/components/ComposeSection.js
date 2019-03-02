@@ -56,12 +56,8 @@ export default class ComposeSection extends Component {
           image_url:url
           })
         })
-        .then(function (){
-          this.forceUpdate();
-        })
     }
 
-    this.forceUpdate();
     
 
 
