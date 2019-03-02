@@ -14,7 +14,7 @@ class PostController {
       title: request.input('post_title'),
       content: request.input('content'),
       user_id: auth.user.id,
-      type: 'text',
+      type: request.input('type'),
       image_url:request.input('image_url')
     })
 
