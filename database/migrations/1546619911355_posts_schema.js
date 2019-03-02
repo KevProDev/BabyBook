@@ -8,7 +8,7 @@ class PostsSchema extends Schema {
       table.increments()
       table.text('title')
       table.text('content')
-      table.string('type').notNullable()
+      table.string('type')
       table.string('image_url', 600).nullable()
       table.integer('user_id').unsigned().references('id').inTable('users')
       table.timestamps()
