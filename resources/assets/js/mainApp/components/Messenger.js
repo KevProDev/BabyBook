@@ -20,7 +20,8 @@ export default class Messenger extends Component {
       const {baby_name} = this.props.initialData.userInfo
       const {relationship} = this.props.initialData.userInfo
       const {baby_img} = this.props.initialData.userInfo
-      console.log(this.props, "Right baby")
+      console.log(this.props, "Right baby Rendering")
+      console.log("________________")
 
       return (
         <div className="content-area baby-panel">

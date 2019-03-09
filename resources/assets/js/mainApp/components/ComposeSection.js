@@ -22,6 +22,10 @@ export default class ComposeSection extends Component {
         type: 'text',
       
         })
+        .then(function(){
+          console.log("______________");
+          console.log(self.props.initialData, "AFTER POST");
+        })
     } else {
         // Where the POST Request will be sent to for AXIOS
       let url = 'https://api.cloudinary.com/v1_1/kevpro/image/upload';
@@ -53,12 +57,8 @@ export default class ComposeSection extends Component {
           image_url:url
           })
         })
+   
     }
-
-    
-
-
-
 
   }
 
@@ -85,8 +85,8 @@ export default class ComposeSection extends Component {
   
 
   render() {
-    console.log("compose start")
-    console.log(this.props, "compose")
+    console.log(this.props, "compose rendering")
+    console.log("________________")
     if(this.props.initialData.userInfo == undefined) {
       return(<div>Loading</div>)
     } else {

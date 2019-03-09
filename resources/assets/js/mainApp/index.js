@@ -32,13 +32,16 @@ class Layout extends Component {
     const getInitialData = async function(){
       try{
         const initialData = await axios.get('/api/initialApp')
+
+        .then(self.GrabData)
+        // .then(function(){
+        //   console.log("------------");
+        //   console.log("i got");
+          
+        // })
         // console.log(initialData)
         
-        self.setState({
-          initialData: initialData.data
-        }, ()=> {
-          console.log(self.state, "index")
-        })
+  
         
       } catch(error){
         console.log(error)
@@ -48,13 +51,17 @@ class Layout extends Component {
     
   }
 
-  clickedBtn = () => {
-    console.log("swag");
-  };
+  GrabData = initialData => {
+    this.setState({
+      initialData: initialData.data
+    }, ()=> {
+      console.log(this.state, "index InitialData console state")
+    })
+  }
 
   render() {
-    console.log("render index")
-    console.log(this.state.initialData)
+    console.log(this.state.initialData, "render index")
+    console.log("________________")
     return (
       <Router>
         <div className="app-container home-page">

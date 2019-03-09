@@ -1,23 +1,63 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import axios from "axios"
 
 export default class Posts extends Component {
   constructor() {
     super();
     this.state = {
-      name: "Postdide"
+      name: "Post Componet"
     };
   }
-  clickedBtn = () => {
-    console.log("swag");
-  };
+
+
+  async componentWillMount() {
+    const self = this
+
+    console.log("ComponetwillMount from Post.js");
+    const GotGetData = await axios.get('/api/initialApp')
+    .then(self.setPost)
+  }
+
+  getPost = async() => {
+    const GotGetData = await axios.get('/api/initialApp')
+    .then(this.setPost)
+  }
+
+  setPost = res => {
+    this.setState({
+      BabyPost: res.data
+    }, () => {
+      console.log(this.state, "setPost has fired & stored")
+    })
+  }
+
+  componentWillReceiveProps(props) {
+    console.log("componentWillReceiveProps in Post.js");
+    const { refreshPost } = this.props;
+    if (props.refreshPost !== refreshPost) {
+      this.getPost()
+     console.log("they are not equal")
+    } else{
+      console.log("They are the same");
+    }
+  }
+
+
 
   showLatestPosts = () => {
-    if(this.props.initialData.latestPosts != undefined) {
-      return this.props.initialData.latestPosts.reverse().map((item, index) => {
+
+    const fire = console.log("Wait after SetPost");
+    console.log(this.state);
+
+    if(this.state.BabyPost == undefined){
+      return(<div>Loading</div>)
+    } else {
+      return this.state.BabyPost.latestPosts.reverse().map((item, index) => {
         let post = item.posts
         let user = item.users
         let postImg = item.posts.image_url
+        console.log("Post to html");
 
         return(<div className="update-container" key={index}>
           <div className="media">
@@ -73,6 +113,7 @@ export default class Posts extends Component {
     }
   }
   render() {
+    console.log("Post Start");
     return (
       <section id="posts">
         {this.showLatestPosts()}

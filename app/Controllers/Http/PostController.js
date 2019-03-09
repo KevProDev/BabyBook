@@ -21,7 +21,17 @@ class PostController {
 
     // const latestPosts = await Post.query().where('user_id', '=', '1').fetch()
 
-    return "save was successful"
+    const latestPosts = await Post.query().innerJoin('users', 'users.id', 'posts.user_id').options({nestTables:true}).fetch()
+      
+    console.log(latestPosts.toJSON())
+    // const latestPosts = await Post.query().where('user_id', '=', '1').fetch()
+    
+   
+    return {
+      userInfo: auth.user,
+      latestPosts
+      
+    }
   }
   async readback({auth}){
 

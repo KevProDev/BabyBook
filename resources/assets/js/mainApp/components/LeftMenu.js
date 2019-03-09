@@ -25,6 +25,7 @@ export default class LeftMenu extends Component {
       const {name} = this.props.initialData.userInfo
       const user_id = this.props.initialData.userInfo.id
       console.log(this.props, "LEftMenu Will Mount")
+      console.log("________________")
 
       return (
         <section id="left-menu">
