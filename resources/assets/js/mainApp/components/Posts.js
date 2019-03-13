@@ -11,44 +11,96 @@ export default class Posts extends Component {
   }
 
 
-  async componentWillMount() {
+  async componentDidMount() {
     const self = this
+    this.getDataFromProps()
 
-    console.log("ComponetwillMount from Post.js");
-    const GotGetData = await axios.get('/api/initialApp')
-    .then(self.setPost)
+    console.log("POST: ComponetDidMount");
+    console.log(' POST: ComponetDidMount : PROPS',this.props);
+    console.log(' POST: ComponetDidMount : State',this.state);
+    // console.log(' POST: Grab Data from database');
+    // console.log('_______________________________')
+    // const GotGetData = await axios.get('/api/initialApp')
+    // .then(self.setPost)
+    // console.log(' POST: ComonentDidMount : DATA has been set to state');
   }
 
-  getPost = async() => {
-    const GotGetData = await axios.get('/api/initialApp')
-    .then(this.setPost)
-  }
-
-  setPost = res => {
+  getDataFromProps(){
     this.setState({
-      BabyPost: res.data
-    }, () => {
-      console.log(this.state, "setPost has fired & stored")
+      BabyPost: this.props.BabyData
     })
   }
 
-  componentWillReceiveProps(props) {
-    console.log("componentWillReceiveProps in Post.js");
-    const { refreshPost } = this.props;
-    if (props.refreshPost !== refreshPost) {
-      this.getPost()
-     console.log("they are not equal")
+  // getPost = async() => {
+  //   const GotGetData = await axios.get('/api/initialApp')
+  //   .then(this.setPost)
+  //   .then(this.showLatestPosts)
+
+  //   console.log("POST: getPost : State ->",this.state)
+  //   console.log('_______________________________')
+  // }
+
+  // setPost = res => {
+  //   this.setState({
+  //     BabyPost: res.data
+  //   }, () => {
+  //     console.log("POST: setPOST : Got Data from database & store BabyPost: State ->",this.state)
+  //     console.log('_______________________________')
+  //   })
+  // }
+
+  upDatePost(nextProps){
+    this.setState({
+      BabyPost: nextProps.BabyData
+    }, () => {
+      console.log("POST: upDatePOST : Got Data from PROPS & store BabyPost: State ->", this.state)
+      console.log('_______________________________')
+    }) 
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log("POST: componentWillReceiveProps");
+    console.log('_______________________________')
+    const { BabyData } = this.props;
+    if (BabyData.latestPosts.length !== nextProps.BabyData.latestPosts.length) {
+      this.upDatePost(nextProps)
+     console.log("POST: They are not equal")
+     console.log('________________________')
     } else{
-      console.log("They are the same");
+      console.log("POST: They are the same");
+      console.log('_______________________')
     }
   }
 
 
+  
+
+
+  shouldComponentUpdate(nextProps){
+    const { BabyData } = this.props;
+    if((this.props.handleChangePostTitle !== nextProps.handleChangePostTitle)||(this.props.handleChangePostContent !== nextProps.handleChangePostContent)) {
+      console.log("POST: shouldComponentUpdate - Do NOT Update");
+      console.log('___________________________________________')
+
+      // if(BabyData.latestPosts.length !== nextProps.BabyData.latestPosts.length)
+      return false
+    } else{
+      console.log("POST: shouldComponentUpdate - Do Update");
+      console.log('___________________________________________')
+      return true
+    }
+
+  }
+
+
+  
 
   showLatestPosts = () => {
-
-    const fire = console.log("Wait after SetPost");
-    console.log(this.state);
+    
+    
+    const fire = console.log("POST: showlastestPost : Wait after SetPost");
+    console.log("POST: showlastestPost : State->",this.state);
+    console.log('___________________________________________')
 
     if(this.state.BabyPost == undefined){
       return(<div>Loading</div>)
@@ -57,7 +109,6 @@ export default class Posts extends Component {
         let post = item.posts
         let user = item.users
         let postImg = item.posts.image_url
-        console.log("Post to html");
 
         return(<div className="update-container" key={index}>
           <div className="media">
@@ -113,7 +164,7 @@ export default class Posts extends Component {
     }
   }
   render() {
-    console.log("Post Start");
+    console.log("Post: Render");
     return (
       <section id="posts">
         {this.showLatestPosts()}

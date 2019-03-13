@@ -6,7 +6,7 @@ import {
   NavLink
 } from 'react-router-dom'
 import axios from "axios"
-import ComposeSection from "./ComposeSection";
+// import ComposeSection from "./ComposeSection";
 import Posts from "./Posts";
 
 
@@ -20,10 +20,15 @@ export default class Home extends Component {
     };
   }
 
-  async componentWillMount() {
+  async componentDidMount() {
+    console.log(' HOME: componetDidMount')
+    console.log(' HOME: componetDidMount : PROPS',this.props);
+    console.log(' HOME: componetDidMount : Grab Data from database');
+    console.log('________________________')
     const self = this;
     const GotGetData = await axios.get('/api/initialApp')
     .then(self.refreshData)
+    console.log(' HOME: componetDidMount : DATA has been set to state')
     
   }
 
@@ -31,15 +36,17 @@ export default class Home extends Component {
     this.setState({
       BabyPost: res.data
     }, () => {
-      console.log(this.state, "refreshData has fired & stored, get back intialData of BabyPost")
+      console.log( "HOME: refreshData : Got Data from database set to state",this.state)
+      console.log('_____________________________________________________________')
     })
   }
 
   refreshPost = (res) => {
     this.setState({
-      NewBabyPostCycle: res.data
+      BabyPost: res.data
     }, () => {
-      console.log(this.state, "refreshPost Fired off, getting back NewBabyPostCyle");
+      console.log("HOME: refreshPost : Got Data from database & store NewBabyPostCyle chnage to babyPost",this.state);
+      console.log('_____________________________________________________________')
     })
   }
   
@@ -57,8 +64,8 @@ export default class Home extends Component {
         })
         .then(this.refreshPost)
         .then(function(){
-          console.log("______________");
-          console.log(self.props.initialData, "AFTER POST");
+          console.log("HOME: submitForm: AFTER posting getting refreshPost back",self.state );
+          console.log("_______________________________________________________");
         })
         
     } else {
@@ -94,8 +101,8 @@ export default class Home extends Component {
         })
         .then(this.refreshPost)
         .then(function(){
-          console.log("______________");
-          console.log(self.props.initialData, "AFTER POST with IMG");
+          console.log("HOME: submitForm : AFTER POST with IMG",self.props.initialData);
+          console.log("___________________________________________");
         })
         // .then(this.refreshPost)
    
@@ -103,14 +110,13 @@ export default class Home extends Component {
 
   }
 
+
   handleChange = (event) => {
     const name = event.target.name
     const value = event.target.type == 'checkbox' ? event.target.checked : event.target.value
 
     this.setState({
       [name]: value
-    }, () => {
-      console.log("Handlechange", this.state)
     })
   }
 
@@ -126,8 +132,8 @@ export default class Home extends Component {
 
 
   render() {
-    console.log(this.state, "Compose & Post Section")
-    console.log("________________")
+    console.log("HOME: RENDER",this.state)
+    console.log("________________________")
     if(this.state.BabyPost == undefined) {
       return(<div>Loading</div>)
     } else {
@@ -153,7 +159,12 @@ export default class Home extends Component {
                    </div>
                  </div> 
               </section>
-              <Posts BabyData={(this.state.BabyPost == undefined) ? 'loading' : this.state.BabyPost } refreshPost={this.state.NewBabyPostCycle} />
+              <Posts 
+              BabyData={(this.state.BabyPost == undefined) ? 'loading' : this.state.BabyPost } 
+              refreshPost={this.state.refreshPost} 
+              handleChangePostTitle={this.state.post_title } 
+              handleChangePostContent={this.state.post_content}
+               />
             </div>
     );}
   }

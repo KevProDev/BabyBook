@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 184:
+/***/ 187:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10,7 +10,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _defineProperty2 = __webpack_require__(57);
+var _defineProperty2 = __webpack_require__(56);
 
 var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
@@ -46,17 +46,17 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactRouterDom = __webpack_require__(56);
+var _reactRouterDom = __webpack_require__(55);
 
 var _axios = __webpack_require__(32);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _ComposeSection = __webpack_require__(54);
+var _ComposeSection = __webpack_require__(73);
 
 var _ComposeSection2 = _interopRequireDefault(_ComposeSection);
 
-var _Posts = __webpack_require__(55);
+var _Posts = __webpack_require__(54);
 
 var _Posts2 = _interopRequireDefault(_Posts);
 
@@ -251,7 +251,7 @@ exports.default = Baby;
 
 /***/ }),
 
-/***/ 185:
+/***/ 188:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -261,7 +261,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _defineProperty2 = __webpack_require__(57);
+var _defineProperty2 = __webpack_require__(56);
 
 var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
@@ -297,17 +297,13 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactRouterDom = __webpack_require__(56);
+var _reactRouterDom = __webpack_require__(55);
 
 var _axios = __webpack_require__(32);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _ComposeSection = __webpack_require__(54);
-
-var _ComposeSection2 = _interopRequireDefault(_ComposeSection);
-
-var _Posts = __webpack_require__(55);
+var _Posts = __webpack_require__(54);
 
 var _Posts2 = _interopRequireDefault(_Posts);
 
@@ -327,15 +323,17 @@ var Home = function (_Component) {
       _this.setState({
         BabyPost: res.data
       }, function () {
-        console.log(_this.state, "refreshData has fired & stored, get back intialData of BabyPost");
+        console.log("HOME: refreshData : Got Data from database set to state", _this.state);
+        console.log('_____________________________________________________________');
       });
     };
 
     _this.refreshPost = function (res) {
       _this.setState({
-        NewBabyPostCycle: res.data
+        BabyPost: res.data
       }, function () {
-        console.log(_this.state, "refreshPost Fired off, getting back NewBabyPostCyle");
+        console.log("HOME: refreshPost : Got Data from database & store NewBabyPostCyle chnage to babyPost", _this.state);
+        console.log('_____________________________________________________________');
       });
     };
 
@@ -361,8 +359,8 @@ var Home = function (_Component) {
                 type: 'text'
 
               }).then(_this.refreshPost).then(function () {
-                console.log("______________");
-                console.log(self.props.initialData, "AFTER POST");
+                console.log("HOME: submitForm: AFTER posting getting refreshPost back", self.state);
+                console.log("_______________________________________________________");
               });
 
             case 4:
@@ -401,8 +399,8 @@ var Home = function (_Component) {
                   image_url: url
                 });
               }).then(_this.refreshPost).then(function () {
-                console.log("______________");
-                console.log(self.props.initialData, "AFTER POST with IMG");
+                console.log("HOME: submitForm : AFTER POST with IMG", self.props.initialData);
+                console.log("___________________________________________");
               });
 
             case 13:
@@ -420,9 +418,7 @@ var Home = function (_Component) {
       var name = event.target.name;
       var value = event.target.type == 'checkbox' ? event.target.checked : event.target.value;
 
-      _this.setState((0, _defineProperty3.default)({}, name, value), function () {
-        console.log("Handlechange", _this.state);
-      });
+      _this.setState((0, _defineProperty3.default)({}, name, value));
     };
 
     _this.handleFile = function (event) {
@@ -440,7 +436,7 @@ var Home = function (_Component) {
   }
 
   (0, _createClass3.default)(Home, [{
-    key: 'componentWillMount',
+    key: 'componentDidMount',
     value: function () {
       var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2() {
         var self, GotGetData;
@@ -448,14 +444,20 @@ var Home = function (_Component) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                console.log(' HOME: componetDidMount');
+                console.log(' HOME: componetDidMount : PROPS', this.props);
+                console.log(' HOME: componetDidMount : Grab Data from database');
+                console.log('________________________');
                 self = this;
-                _context2.next = 3;
+                _context2.next = 7;
                 return _axios2.default.get('/api/initialApp').then(self.refreshData);
 
-              case 3:
+              case 7:
                 GotGetData = _context2.sent;
 
-              case 4:
+                console.log(' HOME: componetDidMount : DATA has been set to state');
+
+              case 9:
               case 'end':
                 return _context2.stop();
             }
@@ -463,19 +465,19 @@ var Home = function (_Component) {
         }, _callee2, this);
       }));
 
-      function componentWillMount() {
+      function componentDidMount() {
         return _ref2.apply(this, arguments);
       }
 
-      return componentWillMount;
+      return componentDidMount;
     }()
   }, {
     key: 'render',
     value: function render() {
       var _this3 = this;
 
-      console.log(this.state, "Compose & Post Section");
-      console.log("________________");
+      console.log("HOME: RENDER", this.state);
+      console.log("________________________");
       if (this.state.BabyPost == undefined) {
         return _react2.default.createElement(
           'div',
@@ -513,19 +515,26 @@ var Home = function (_Component) {
               )
             )
           ),
-          _react2.default.createElement(_Posts2.default, { BabyData: this.state.BabyPost == undefined ? 'loading' : this.state.BabyPost, refreshPost: this.state.NewBabyPostCycle })
+          _react2.default.createElement(_Posts2.default, {
+            BabyData: this.state.BabyPost == undefined ? 'loading' : this.state.BabyPost,
+            refreshPost: this.state.refreshPost,
+            handleChangePostTitle: this.state.post_title,
+            handleChangePostContent: this.state.post_content
+          })
         );
       }
     }
   }]);
   return Home;
 }(_react.Component);
+// import ComposeSection from "./ComposeSection";
+
 
 exports.default = Home;
 
 /***/ }),
 
-/***/ 186:
+/***/ 189:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -599,8 +608,8 @@ var LeftMenu = function (_Component) {
         var name = this.props.initialData.userInfo.name;
 
         var user_id = this.props.initialData.userInfo.id;
-        console.log(this.props, "LEftMenu Will Mount");
-        console.log("________________");
+        console.log(this.props, "LEftMenu: Render");
+        console.log("____________________________");
 
         return _react2.default.createElement(
           "section",
@@ -705,7 +714,7 @@ exports.default = LeftMenu;
 
 /***/ }),
 
-/***/ 187:
+/***/ 190:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -789,7 +798,7 @@ exports.default = LoadingComp;
 
 /***/ }),
 
-/***/ 188:
+/***/ 191:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -904,7 +913,7 @@ exports.default = Messenger;
 
 /***/ }),
 
-/***/ 189:
+/***/ 192:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -914,7 +923,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _defineProperty2 = __webpack_require__(57);
+var _defineProperty2 = __webpack_require__(56);
 
 var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
@@ -950,17 +959,17 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactRouterDom = __webpack_require__(56);
+var _reactRouterDom = __webpack_require__(55);
 
 var _axios = __webpack_require__(32);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _ComposeSection = __webpack_require__(54);
+var _ComposeSection = __webpack_require__(73);
 
 var _ComposeSection2 = _interopRequireDefault(_ComposeSection);
 
-var _Posts = __webpack_require__(55);
+var _Posts = __webpack_require__(54);
 
 var _Posts2 = _interopRequireDefault(_Posts);
 
@@ -1171,7 +1180,7 @@ exports.default = Profile;
 
 /***/ }),
 
-/***/ 190:
+/***/ 193:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1280,7 +1289,7 @@ exports.default = SearchHeader;
 
 /***/ }),
 
-/***/ 209:
+/***/ 213:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1318,45 +1327,45 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactRouterDom = __webpack_require__(56);
+var _reactRouterDom = __webpack_require__(55);
 
 var _axios = __webpack_require__(32);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _Home = __webpack_require__(185);
+var _Home = __webpack_require__(188);
 
 var _Home2 = _interopRequireDefault(_Home);
 
-var _Profile = __webpack_require__(189);
+var _Profile = __webpack_require__(192);
 
 var _Profile2 = _interopRequireDefault(_Profile);
 
-var _Baby = __webpack_require__(184);
+var _Baby = __webpack_require__(187);
 
 var _Baby2 = _interopRequireDefault(_Baby);
 
-var _LeftMenu = __webpack_require__(186);
+var _LeftMenu = __webpack_require__(189);
 
 var _LeftMenu2 = _interopRequireDefault(_LeftMenu);
 
-var _Messenger = __webpack_require__(188);
+var _Messenger = __webpack_require__(191);
 
 var _Messenger2 = _interopRequireDefault(_Messenger);
 
-var _SearchHeader = __webpack_require__(190);
+var _SearchHeader = __webpack_require__(193);
 
 var _SearchHeader2 = _interopRequireDefault(_SearchHeader);
 
-var _ComposeSection = __webpack_require__(54);
+var _ComposeSection = __webpack_require__(73);
 
 var _ComposeSection2 = _interopRequireDefault(_ComposeSection);
 
-var _Posts = __webpack_require__(55);
+var _Posts = __webpack_require__(54);
 
 var _Posts2 = _interopRequireDefault(_Posts);
 
-var _LoadingComp = __webpack_require__(187);
+var _LoadingComp = __webpack_require__(190);
 
 var _LoadingComp2 = _interopRequireDefault(_LoadingComp);
 
@@ -1374,7 +1383,8 @@ var Layout = function (_Component) {
       _this.setState({
         initialData: initialData.data
       }, function () {
-        console.log(_this.state, "index InitialData console state");
+        console.log("INDEX: GrabData InitialData,", _this.state);
+        console.log("______________________________");
       });
     };
 
@@ -1386,7 +1396,7 @@ var Layout = function (_Component) {
   }
 
   (0, _createClass3.default)(Layout, [{
-    key: 'componentWillMount',
+    key: 'componentDidMount',
     value: function () {
       var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2() {
         var self, getInitialData;
@@ -1394,6 +1404,9 @@ var Layout = function (_Component) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                console.log(' INDEX: componetDidMount', this.state);
+                console.log('_________________________');
+
                 self = this;
 
                 getInitialData = function () {
@@ -1404,26 +1417,38 @@ var Layout = function (_Component) {
                         switch (_context.prev = _context.next) {
                           case 0:
                             _context.prev = 0;
-                            _context.next = 3;
+
+                            console.log(' INDEX: componetDidMount: Grab Data from database', self.state);
+                            _context.next = 4;
                             return _axios2.default.get('/api/initialApp').then(self.GrabData);
 
-                          case 3:
+                          case 4:
                             initialData = _context.sent;
-                            _context.next = 9;
+
+                            console.log(' INDEX: ComonentDidMount : DATA has been set to state');
+                            // .then(function(){
+                            //   console.log("------------");
+                            //   console.log("i got");
+
+                            // })
+                            // console.log(initialData)
+
+
+                            _context.next = 11;
                             break;
 
-                          case 6:
-                            _context.prev = 6;
+                          case 8:
+                            _context.prev = 8;
                             _context.t0 = _context['catch'](0);
 
                             console.log(_context.t0);
 
-                          case 9:
+                          case 11:
                           case 'end':
                             return _context.stop();
                         }
                       }
-                    }, _callee, this, [[0, 6]]);
+                    }, _callee, this, [[0, 8]]);
                   }));
 
                   return function getInitialData() {
@@ -1433,7 +1458,7 @@ var Layout = function (_Component) {
 
                 getInitialData();
 
-              case 3:
+              case 5:
               case 'end':
                 return _context2.stop();
             }
@@ -1441,19 +1466,19 @@ var Layout = function (_Component) {
         }, _callee2, this);
       }));
 
-      function componentWillMount() {
+      function componentDidMount() {
         return _ref.apply(this, arguments);
       }
 
-      return componentWillMount;
+      return componentDidMount;
     }()
   }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
 
-      console.log(this.state.initialData, "render index");
-      console.log("________________");
+      console.log("INDEX: RENDER", this.state.initialData);
+      console.log("______________________________");
       return _react2.default.createElement(
         _reactRouterDom.BrowserRouter,
         null,
@@ -1500,7 +1525,315 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _defineProperty2 = __webpack_require__(57);
+var _regenerator = __webpack_require__(38);
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _asyncToGenerator2 = __webpack_require__(37);
+
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+var _classCallCheck2 = __webpack_require__(16);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(17);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(19);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(18);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(12);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _axios = __webpack_require__(32);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Posts = function (_Component) {
+  (0, _inherits3.default)(Posts, _Component);
+
+  function Posts() {
+    (0, _classCallCheck3.default)(this, Posts);
+
+    var _this = (0, _possibleConstructorReturn3.default)(this, (Posts.__proto__ || Object.getPrototypeOf(Posts)).call(this));
+
+    _this.showLatestPosts = function () {
+
+      var fire = console.log("POST: showlastestPost : Wait after SetPost");
+      console.log("POST: showlastestPost : State->", _this.state);
+      console.log('___________________________________________');
+
+      if (_this.state.BabyPost == undefined) {
+        return _react2.default.createElement(
+          "div",
+          null,
+          "Loading"
+        );
+      } else {
+        return _this.state.BabyPost.latestPosts.reverse().map(function (item, index) {
+          var post = item.posts;
+          var user = item.users;
+          var postImg = item.posts.image_url;
+
+          return _react2.default.createElement(
+            "div",
+            { className: "update-container", key: index },
+            _react2.default.createElement(
+              "div",
+              { className: "media" },
+              _react2.default.createElement(
+                "div",
+                { className: "media__grey-container" },
+                _react2.default.createElement(
+                  "div",
+                  { className: "author-info" },
+                  _react2.default.createElement("a", { href: "#", className: "user-img", style: {
+                      backgroundImage: "url('" + user.profile_img + "')"
+                    } }),
+                  _react2.default.createElement(
+                    "div",
+                    { className: "info" },
+                    _react2.default.createElement(
+                      "a",
+                      { href: "/profile" },
+                      "" + user.name
+                    ),
+                    " shared a ",
+                    _react2.default.createElement(
+                      "a",
+                      { href: "#" },
+                      post.type == 'text' ? 'story' : 'image'
+                    )
+                  )
+                ),
+                _react2.default.createElement(
+                  "div",
+                  { className: "update-info" },
+                  _react2.default.createElement(
+                    "h3",
+                    null,
+                    post.title
+                  ),
+                  _react2.default.createElement(
+                    "p",
+                    null,
+                    post.content
+                  )
+                )
+              ),
+              _react2.default.createElement("div", { className: "" + (post.type === 'text' ? 'story' : 'image'), style: { background: "url('" + postImg + "')", backgroundRepeat: "no-repeat", backgroundPosition: "center center", backgroundSize: "cover" } })
+            ),
+            _react2.default.createElement(
+              "div",
+              { className: "padding-container" },
+              _react2.default.createElement(
+                "div",
+                { className: "grey-container" },
+                _react2.default.createElement(
+                  "div",
+                  { className: "update-stats" },
+                  _react2.default.createElement(
+                    "div",
+                    { className: "icon-section" },
+                    _react2.default.createElement(
+                      "div",
+                      { className: "like-circle" },
+                      _react2.default.createElement("i", { className: "fas fa-thumbs-up" })
+                    )
+                  ),
+                  _react2.default.createElement(
+                    "div",
+                    { className: "other-users" },
+                    "Chine Russell and 23 others liked update"
+                  ),
+                  _react2.default.createElement(
+                    "div",
+                    { className: "comments-stats" },
+                    "4 comments"
+                  )
+                ),
+                _react2.default.createElement(
+                  "div",
+                  { className: "compose-comments" },
+                  _react2.default.createElement("textarea", { name: "name", id: true, cols: 80, rows: 8, defaultValue: "" }),
+                  _react2.default.createElement(
+                    "div",
+                    { className: "buttons" },
+                    _react2.default.createElement(
+                      "div",
+                      { className: "repost-button" },
+                      _react2.default.createElement("i", { className: "fas fa-redo" })
+                    ),
+                    _react2.default.createElement(
+                      "div",
+                      { className: "like-button" },
+                      _react2.default.createElement("i", { className: "fas fa-thumbs-up" })
+                    )
+                  )
+                )
+              )
+            )
+          );
+        });
+      }
+    };
+
+    _this.state = {
+      name: "Post Componet"
+    };
+    return _this;
+  }
+
+  (0, _createClass3.default)(Posts, [{
+    key: "componentDidMount",
+    value: function () {
+      var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+        var self;
+        return _regenerator2.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                self = this;
+
+                this.getDataFromProps();
+
+                console.log("POST: ComponetDidMount");
+                console.log(' POST: ComponetDidMount : PROPS', this.props);
+                console.log(' POST: ComponetDidMount : State', this.state);
+                // console.log(' POST: Grab Data from database');
+                // console.log('_______________________________')
+                // const GotGetData = await axios.get('/api/initialApp')
+                // .then(self.setPost)
+                // console.log(' POST: ComonentDidMount : DATA has been set to state');
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function componentDidMount() {
+        return _ref.apply(this, arguments);
+      }
+
+      return componentDidMount;
+    }()
+  }, {
+    key: "getDataFromProps",
+    value: function getDataFromProps() {
+      this.setState({
+        BabyPost: this.props.BabyData
+      });
+    }
+
+    // getPost = async() => {
+    //   const GotGetData = await axios.get('/api/initialApp')
+    //   .then(this.setPost)
+    //   .then(this.showLatestPosts)
+
+    //   console.log("POST: getPost : State ->",this.state)
+    //   console.log('_______________________________')
+    // }
+
+    // setPost = res => {
+    //   this.setState({
+    //     BabyPost: res.data
+    //   }, () => {
+    //     console.log("POST: setPOST : Got Data from database & store BabyPost: State ->",this.state)
+    //     console.log('_______________________________')
+    //   })
+    // }
+
+  }, {
+    key: "upDatePost",
+    value: function upDatePost(nextProps) {
+      var _this2 = this;
+
+      this.setState({
+        BabyPost: nextProps.BabyData
+      }, function () {
+        console.log("POST: upDatePOST : Got Data from PROPS & store BabyPost: State ->", _this2.state);
+        console.log('_______________________________');
+      });
+    }
+  }, {
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(nextProps) {
+      console.log("POST: componentWillReceiveProps");
+      console.log('_______________________________');
+      var BabyData = this.props.BabyData;
+
+      if (BabyData.latestPosts.length !== nextProps.BabyData.latestPosts.length) {
+        this.upDatePost(nextProps);
+        console.log("POST: They are not equal");
+        console.log('________________________');
+      } else {
+        console.log("POST: They are the same");
+        console.log('_______________________');
+      }
+    }
+  }, {
+    key: "shouldComponentUpdate",
+    value: function shouldComponentUpdate(nextProps) {
+      var BabyData = this.props.BabyData;
+
+      if (this.props.handleChangePostTitle !== nextProps.handleChangePostTitle || this.props.handleChangePostContent !== nextProps.handleChangePostContent) {
+        console.log("POST: shouldComponentUpdate - Do NOT Update");
+        console.log('___________________________________________');
+
+        // if(BabyData.latestPosts.length !== nextProps.BabyData.latestPosts.length)
+        return false;
+      } else {
+        console.log("POST: shouldComponentUpdate - Do Update");
+        console.log('___________________________________________');
+        return true;
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      console.log("Post: Render");
+      return _react2.default.createElement(
+        "section",
+        { id: "posts" },
+        this.showLatestPosts()
+      );
+    }
+  }]);
+  return Posts;
+}(_react.Component);
+
+exports.default = Posts;
+
+/***/ }),
+
+/***/ 73:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _defineProperty2 = __webpack_require__(56);
 
 var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
@@ -1691,283 +2024,6 @@ var ComposeSection = function (_Component) {
 
 exports.default = ComposeSection;
 
-/***/ }),
-
-/***/ 55:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _regenerator = __webpack_require__(38);
-
-var _regenerator2 = _interopRequireDefault(_regenerator);
-
-var _asyncToGenerator2 = __webpack_require__(37);
-
-var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
-
-var _classCallCheck2 = __webpack_require__(16);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(17);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(19);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(18);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _react = __webpack_require__(4);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(12);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _axios = __webpack_require__(32);
-
-var _axios2 = _interopRequireDefault(_axios);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Posts = function (_Component) {
-  (0, _inherits3.default)(Posts, _Component);
-
-  function Posts() {
-    var _this2 = this;
-
-    (0, _classCallCheck3.default)(this, Posts);
-
-    var _this = (0, _possibleConstructorReturn3.default)(this, (Posts.__proto__ || Object.getPrototypeOf(Posts)).call(this));
-
-    _this.getPost = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
-      var GotGetData;
-      return _regenerator2.default.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return _axios2.default.get('/api/initialApp').then(_this.setPost);
-
-            case 2:
-              GotGetData = _context.sent;
-
-            case 3:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee, _this2);
-    }));
-
-    _this.setPost = function (res) {
-      _this.setState({
-        BabyPost: res.data
-      }, function () {
-        console.log(_this.state, "setPost has fired & stored");
-      });
-    };
-
-    _this.showLatestPosts = function () {
-
-      var fire = console.log("Wait after SetPost");
-      console.log(_this.state);
-
-      if (_this.state.BabyPost == undefined) {
-        return _react2.default.createElement(
-          "div",
-          null,
-          "Loading"
-        );
-      } else {
-        return _this.state.BabyPost.latestPosts.reverse().map(function (item, index) {
-          var post = item.posts;
-          var user = item.users;
-          var postImg = item.posts.image_url;
-          console.log("Post to html");
-
-          return _react2.default.createElement(
-            "div",
-            { className: "update-container", key: index },
-            _react2.default.createElement(
-              "div",
-              { className: "media" },
-              _react2.default.createElement(
-                "div",
-                { className: "media__grey-container" },
-                _react2.default.createElement(
-                  "div",
-                  { className: "author-info" },
-                  _react2.default.createElement("a", { href: "#", className: "user-img", style: {
-                      backgroundImage: "url('" + user.profile_img + "')"
-                    } }),
-                  _react2.default.createElement(
-                    "div",
-                    { className: "info" },
-                    _react2.default.createElement(
-                      "a",
-                      { href: "/profile" },
-                      "" + user.name
-                    ),
-                    " shared a ",
-                    _react2.default.createElement(
-                      "a",
-                      { href: "#" },
-                      post.type == 'text' ? 'story' : 'image'
-                    )
-                  )
-                ),
-                _react2.default.createElement(
-                  "div",
-                  { className: "update-info" },
-                  _react2.default.createElement(
-                    "h3",
-                    null,
-                    post.title
-                  ),
-                  _react2.default.createElement(
-                    "p",
-                    null,
-                    post.content
-                  )
-                )
-              ),
-              _react2.default.createElement("div", { className: "" + (post.type === 'text' ? 'story' : 'image'), style: { background: "url('" + postImg + "')", backgroundRepeat: "no-repeat", backgroundPosition: "center center", backgroundSize: "cover" } })
-            ),
-            _react2.default.createElement(
-              "div",
-              { className: "padding-container" },
-              _react2.default.createElement(
-                "div",
-                { className: "grey-container" },
-                _react2.default.createElement(
-                  "div",
-                  { className: "update-stats" },
-                  _react2.default.createElement(
-                    "div",
-                    { className: "icon-section" },
-                    _react2.default.createElement(
-                      "div",
-                      { className: "like-circle" },
-                      _react2.default.createElement("i", { className: "fas fa-thumbs-up" })
-                    )
-                  ),
-                  _react2.default.createElement(
-                    "div",
-                    { className: "other-users" },
-                    "Chine Russell and 23 others liked update"
-                  ),
-                  _react2.default.createElement(
-                    "div",
-                    { className: "comments-stats" },
-                    "4 comments"
-                  )
-                ),
-                _react2.default.createElement(
-                  "div",
-                  { className: "compose-comments" },
-                  _react2.default.createElement("textarea", { name: "name", id: true, cols: 80, rows: 8, defaultValue: "" }),
-                  _react2.default.createElement(
-                    "div",
-                    { className: "buttons" },
-                    _react2.default.createElement(
-                      "div",
-                      { className: "repost-button" },
-                      _react2.default.createElement("i", { className: "fas fa-redo" })
-                    ),
-                    _react2.default.createElement(
-                      "div",
-                      { className: "like-button" },
-                      _react2.default.createElement("i", { className: "fas fa-thumbs-up" })
-                    )
-                  )
-                )
-              )
-            )
-          );
-        });
-      }
-    };
-
-    _this.state = {
-      name: "Post Componet"
-    };
-    return _this;
-  }
-
-  (0, _createClass3.default)(Posts, [{
-    key: "componentWillMount",
-    value: function () {
-      var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2() {
-        var self, GotGetData;
-        return _regenerator2.default.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                self = this;
-
-
-                console.log("ComponetwillMount from Post.js");
-                _context2.next = 4;
-                return _axios2.default.get('/api/initialApp').then(self.setPost);
-
-              case 4:
-                GotGetData = _context2.sent;
-
-              case 5:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, this);
-      }));
-
-      function componentWillMount() {
-        return _ref2.apply(this, arguments);
-      }
-
-      return componentWillMount;
-    }()
-  }, {
-    key: "componentWillReceiveProps",
-    value: function componentWillReceiveProps(props) {
-      console.log("componentWillReceiveProps in Post.js");
-      var refreshPost = this.props.refreshPost;
-
-      if (props.refreshPost !== refreshPost) {
-        this.getPost();
-        console.log("they are not equal");
-      } else {
-        console.log("They are the same");
-      }
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      console.log("Post Start");
-      return _react2.default.createElement(
-        "section",
-        { id: "posts" },
-        this.showLatestPosts()
-      );
-    }
-  }]);
-  return Posts;
-}(_react.Component);
-
-exports.default = Posts;
-
 /***/ })
 
-},[209]);
+},[213]);

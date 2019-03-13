@@ -26,14 +26,18 @@ class Layout extends Component {
     };
   }
 
-  async componentWillMount(){
-    const self = this
+  async componentDidMount(){
+    console.log(' INDEX: componetDidMount', this.state)
+    console.log('_________________________')
 
+    const self = this
     const getInitialData = async function(){
       try{
+        console.log(' INDEX: componetDidMount: Grab Data from database', self.state)
         const initialData = await axios.get('/api/initialApp')
 
         .then(self.GrabData)
+        console.log(' INDEX: ComonentDidMount : DATA has been set to state');
         // .then(function(){
         //   console.log("------------");
         //   console.log("i got");
@@ -51,17 +55,18 @@ class Layout extends Component {
     
   }
 
-  GrabData = initialData => {
-    this.setState({
-      initialData: initialData.data
-    }, ()=> {
-      console.log(this.state, "index InitialData console state")
-    })
-  }
+    GrabData = initialData => {
+      this.setState({
+        initialData: initialData.data
+      }, ()=> {
+        console.log("INDEX: GrabData InitialData,",this.state)
+        console.log("______________________________")
+      })
+    }
 
   render() {
-    console.log(this.state.initialData, "render index")
-    console.log("________________")
+    console.log("INDEX: RENDER", this.state.initialData,)
+    console.log("______________________________")
     return (
       <Router>
         <div className="app-container home-page">
