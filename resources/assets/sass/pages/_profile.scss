@@ -38,11 +38,14 @@
       cursor: pointer;
     }
   }
+
+
 }
 .app-container.home-page .baby-panel{
   display: grid;
-  grid-template-rows: 190px 500px;
-  background-color: #ececec;
+  grid-template-rows: 120px 500px;
+  background-color: #F4F9FC;
+  padding-top: 40px;
 
   img{
     width: 100%;
@@ -66,6 +69,10 @@
       color: white;
       cursor: pointer;
     }
+  }
+  
+  .user-img{
+    padding: 20px;
   }
 }
 
