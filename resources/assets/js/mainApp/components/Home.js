@@ -88,6 +88,7 @@ export default class Home extends Component {
       const post = await axios.post(url,fd,config)
       // Once the url comes back start another AXIOS Post request to PostController to save the data and the url to the database 
         .then(function (res) {
+          
           var answer = res.data;
           var url = answer.secure_url
           console.log(url)
@@ -98,10 +99,11 @@ export default class Home extends Component {
           type: "image",
           image_url:url
           })
+          .then(self.refreshPost)
+      
         })
-        .then(this.refreshPost)
         .then(function(){
-          console.log("HOME: submitForm : AFTER POST with IMG",self.props.initialData);
+          console.log("HOME: submitForm : AFTER POST with IMG");
           console.log("___________________________________________");
         })
         // .then(this.refreshPost)
@@ -164,6 +166,7 @@ export default class Home extends Component {
               refreshPost={this.state.refreshPost} 
               handleChangePostTitle={this.state.post_title } 
               handleChangePostContent={this.state.post_content}
+              handleChangePostImg={this.state.post_img}
                />
             </div>
     );}

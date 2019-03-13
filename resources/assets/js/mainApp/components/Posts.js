@@ -78,7 +78,7 @@ export default class Posts extends Component {
 
   shouldComponentUpdate(nextProps){
     const { BabyData } = this.props;
-    if((this.props.handleChangePostTitle !== nextProps.handleChangePostTitle)||(this.props.handleChangePostContent !== nextProps.handleChangePostContent)) {
+    if((this.props.handleChangePostTitle !== nextProps.handleChangePostTitle)||(this.props.handleChangePostContent !== nextProps.handleChangePostContent)||(this.props.handleChangePostImg !== nextProps.handleChangePostImg)) {
       console.log("POST: shouldComponentUpdate - Do NOT Update");
       console.log('___________________________________________')
 
@@ -128,7 +128,7 @@ export default class Posts extends Component {
                 </p>
               </div>
             </div>
-            <div className={`${(post.type === 'text') ? 'story' : 'image'}`} style={{background: `url('${postImg}')`, backgroundRepeat: "no-repeat", backgroundPosition: "center center", backgroundSize: "cover" }} />
+            <div className={`${(post.type === 'text') ? 'story' : 'image'}`} style={{backgroundImage: `url('${postImg}')`}} />
           </div>
           <div className="padding-container">
             <div className="grey-container">

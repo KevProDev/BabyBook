@@ -388,6 +388,7 @@ var Home = function (_Component) {
               return _axios2.default.post(url, fd, config)
               // Once the url comes back start another AXIOS Post request to PostController to save the data and the url to the database 
               .then(function (res) {
+
                 var answer = res.data;
                 var url = answer.secure_url;
                 console.log(url);
@@ -397,9 +398,9 @@ var Home = function (_Component) {
                   user_id: self.props.initialData.userInfo.id,
                   type: "image",
                   image_url: url
-                });
-              }).then(_this.refreshPost).then(function () {
-                console.log("HOME: submitForm : AFTER POST with IMG", self.props.initialData);
+                }).then(self.refreshPost);
+              }).then(function () {
+                console.log("HOME: submitForm : AFTER POST with IMG");
                 console.log("___________________________________________");
               });
 
@@ -519,7 +520,8 @@ var Home = function (_Component) {
             BabyData: this.state.BabyPost == undefined ? 'loading' : this.state.BabyPost,
             refreshPost: this.state.refreshPost,
             handleChangePostTitle: this.state.post_title,
-            handleChangePostContent: this.state.post_content
+            handleChangePostContent: this.state.post_content,
+            handleChangePostImg: this.state.post_img
           })
         );
       }
@@ -1635,7 +1637,7 @@ var Posts = function (_Component) {
                   )
                 )
               ),
-              _react2.default.createElement("div", { className: "" + (post.type === 'text' ? 'story' : 'image'), style: { background: "url('" + postImg + "')", backgroundRepeat: "no-repeat", backgroundPosition: "center center", backgroundSize: "cover" } })
+              _react2.default.createElement("div", { className: "" + (post.type === 'text' ? 'story' : 'image'), style: { backgroundImage: "url('" + postImg + "')" } })
             ),
             _react2.default.createElement(
               "div",
@@ -1793,7 +1795,7 @@ var Posts = function (_Component) {
     value: function shouldComponentUpdate(nextProps) {
       var BabyData = this.props.BabyData;
 
-      if (this.props.handleChangePostTitle !== nextProps.handleChangePostTitle || this.props.handleChangePostContent !== nextProps.handleChangePostContent) {
+      if (this.props.handleChangePostTitle !== nextProps.handleChangePostTitle || this.props.handleChangePostContent !== nextProps.handleChangePostContent || this.props.handleChangePostImg !== nextProps.handleChangePostImg) {
         console.log("POST: shouldComponentUpdate - Do NOT Update");
         console.log('___________________________________________');
 
